@@ -12,8 +12,7 @@
         <Label Content="Last Name" Canvas.Left="10" Canvas.Top="51" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <TextBox x:Name="txtLastName" Canvas.Left="105" TextWrapping="Wrap" Canvas.Top="55" Width="158" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <Button x:Name="btnAddUser" Content="Add User" Canvas.Left="55" Canvas.Top="85" HorizontalAlignment="Left" VerticalAlignment="Center" Width="161" Click="btnAddUser_Click"/>
-        <ComboBox x:Name="cbUsers" Canvas.Left="23" Canvas.Top="168" Width="426" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <RadioButton Content="RadioButton"/>
+        <ComboBox x:Name="cbUsers"  Canvas.Left="23" Canvas.Top="168" Width="426" HorizontalAlignment="Left" VerticalAlignment="Center">
         </ComboBox>
         <Label Content="View User Information&#xD;&#xA;" Canvas.Left="10" Canvas.Top="130" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <ListBox x:Name="lbUserDrinkware" Height="182" Width="764" d:ItemsSource="{d:SampleData ItemCount=5}" Canvas.Left="18" Canvas.Top="214" HorizontalAlignment="Left" VerticalAlignment="Center"/>
