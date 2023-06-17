@@ -21,10 +21,8 @@ namespace UsersWithObjects
     /// </summary>
     public partial class MainWindow : Window
     {
-        static List<User> users = new List<User>();
-        static User _currentUser = null;
+        static List<User> _users = new List<User>();
 
-        static MainWindow mw = new MainWindow();
         public MainWindow()
         {
             InitializeComponent();
@@ -103,19 +101,34 @@ namespace UsersWithObjects
         }
         private void btnAddTumbler_Click(object sender, RoutedEventArgs e)
         {
-            if(ValidateSizeAndCoolingCoefficient())
+            int selectedIndex = cbUsers.SelectedIndex;
+            if (ValidateSizeAndCoolingCoefficient())
             {
                 Tumbler newTumbler = new Tumbler(NewDrinkwareSize(), NewMaterial(), NewCoolingCoefficient(), NewColor());
+                _users[selectedIndex].Drinkwares.Add(newTumbler);
             }
-          
+            else if (selectedIndex < 0)
+            {
+                MessageBox.Show("Please select a user");
+            }
+            DisplayUsers();
+            DisplayDrinkware(selectedIndex);
         }
 
         private void btnAddCoffeeMug_Click(object sender, RoutedEventArgs e)
         {
-             if (ValidateSizeAndCoolingCoefficient())
+            int selectedIndex = cbUsers.SelectedIndex;
+            if (ValidateSizeAndCoolingCoefficient() && selectedIndex >= 0)
              {
                  CoffeeMug newMug = new CoffeeMug(NewDrinkwareSize(), NewMaterial(), NewCoolingCoefficient(), NewColor(), NewHandleType(), NewMugHasLid());
+                 _users[selectedIndex].Drinkwares.Add(newMug);
              }
+            else if (selectedIndex < 0)
+            {
+                MessageBox.Show("Please select a user");
+            }
+            DisplayUsers();
+            DisplayDrinkware(selectedIndex);
         }
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
@@ -125,34 +138,41 @@ namespace UsersWithObjects
             if (firstName != "" && lastName != "")
             {
                 User newUser = new User(firstName, lastName);
-                users.Add(newUser);
-
+                _users.Add(newUser);
             }
             else
             {
                 MessageBox.Show("Please enter a first and last name");
             }
-
-
-        }
-        private void RefreshUserDisplay()
-        {
-            cbUsers.Items.Refresh();
+            DisplayUsers();
         }
         private void DisplayUsers()
         {
-            cbUsers.ItemsSource = users;
+            // Clears the previous display
+            cbUsers.Items.Clear();
+            // Displays the list of users to the combo box
+            for (int i = 0; i < _users.Count; i++)
+            {
+                cbUsers.Items.Add(_users[i]);
+            }
+
         }
 
         private void cbUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int selectedIndex = cbUsers.SelectedIndex;
-            _currentUser = users[selectedIndex];
+            DisplayDrinkware(selectedIndex);
         }
-        private void DisplayDrinkware()
+        private void DisplayDrinkware(int selectedIndex)
         {
-
-            lbUserDrinkware.ItemsSource = _currentUser.Drinkwares;
+            if (selectedIndex >= 0)
+            {
+                lvUsersDrinkware.ItemsSource = _users[selectedIndex].Drinkwares;
+            }
+            else
+            {
+                MessageBox.Show("Please select a user.");
+            }
         }
     }
 }

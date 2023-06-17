@@ -15,7 +15,6 @@
         <ComboBox x:Name="cbUsers"  Canvas.Left="23" Canvas.Top="168" Width="426" HorizontalAlignment="Left" VerticalAlignment="Center">
         </ComboBox>
         <Label Content="View User Information&#xD;&#xA;" Canvas.Left="10" Canvas.Top="130" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <ListBox x:Name="lbUserDrinkware" Height="182" Width="764" d:ItemsSource="{d:SampleData ItemCount=5}" Canvas.Left="18" Canvas.Top="214" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <Canvas Height="158" Width="515" Canvas.Left="285" Background="#FFD6F0B7">
             <Button x:Name="btnAddCoffeeMug" Content="Add Coffee Mug" Canvas.Left="285" Canvas.Top="121" HorizontalAlignment="Left" VerticalAlignment="Top" Width="195" Click="btnAddCoffeeMug_Click"/>
             <Button x:Name="btnAddTumbler" Content="Add Tumbler" Canvas.Left="34" Canvas.Top="121" HorizontalAlignment="Left" VerticalAlignment="Top" Width="195" Click="btnAddTumbler_Click"/>
@@ -31,6 +30,13 @@
             <TextBox x:Name="txtMaterial" Canvas.Left="321" TextWrapping="Wrap" Canvas.Top="14" Width="184" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <TextBox x:Name="txtHandleType" Canvas.Left="388" TextWrapping="Wrap" Canvas.Top="52" Width="114" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
+        <ListView x:Name="lvUsersDrinkware" Height="201" Width="756" d:ItemsSource="{d:SampleData ItemCount=5}" Canvas.Left="22" Canvas.Top="214">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Canvas>
 </Window>
